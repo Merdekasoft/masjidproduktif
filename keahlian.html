@@ -56,10 +56,14 @@
         data.forEach(([nama, keahlian, whatsapp]) => {
           const div = document.createElement('div');
           div.className = 'bg-gray-50 p-4 rounded-md border border-gray-200';
+
+          const noWa = whatsapp.replace(/\D/g, '');
+          const fullNoWa = noWa.startsWith('8') ? '62' + noWa : noWa;
+
           div.innerHTML = `
             <p class="text-sm mb-1"><strong>${nama}</strong></p>
             <p class="text-sm mb-2 text-gray-700">${keahlian}</p>
-            <a href="https://wa.me/0${whatsapp.replace(/\D/g, '')}" target="_blank"
+            <a href="https://wa.me/${fullNoWa}" target="_blank"
               class="inline-block bg-green-500 text-white px-4 py-1 rounded-full text-xs hover:bg-green-600 transition">
               💬 Hubungi via WhatsApp
             </a>`;
