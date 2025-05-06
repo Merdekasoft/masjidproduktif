@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forum Jamaah Masjid</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <header class="bg-green-700 text-white p-4 shadow-md">
+    <h1 class="text-xl font-bold text-center">Forum Jamaah Masjid</h1>
+  </header>
+
+  <main class="p-4 max-w-2xl mx-auto space-y-6">
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-lg font-semibold text-green-700 mb-2">Tentang Forum Ini</h2>
+      <p class="text-gray-700 text-sm">
+        Forum ini dibuat untuk mempererat silaturahmi, berbagi ilmu, dan berdiskusi seputar kegiatan masjid dan kehidupan sehari-hari yang islami.
+      </p>
+    </section>
+
+    <section class="bg-white p-6 rounded-xl shadow">
+      <h2 class="text-lg font-semibold text-green-700 mb-4">Diskusi Terbaru</h2>
+
+      <div class="space-y-3" id="diskusi-container">
+        <p class="text-gray-500 text-sm">Memuat diskusi terbaru...</p>
+      </div>
+    </section>
+
+    <section class="bg-white p-6 rounded-xl shadow text-center">
+      <h2 class="text-lg font-semibold text-green-700 mb-2">Ingin Ikut Diskusi Lebih Lanjut?</h2>
+      <p class="text-gray-700 text-sm mb-4">Gabung grup WhatsApp resmi Jamaah Masjid untuk berdiskusi langsung.</p>
+      <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" target="_blank"
+         class="inline-block bg-green-600 text-white px-6 py-2 rounded-full shadow hover:bg-green-700 transition">
+        🤝 Gabung Grup WA
+      </a>
+    </section>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm py-4">
+    &copy; 2025 Masjid Produktif. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRhcv3m26WJ0vCK7nw2jYVYL3MQmexgpra81YyBnjmYd69U68WZLz8qJ3z7WqQEdfW1DRWrCNSbRacu/pub?output=tsv';
+
+    fetch(sheetUrl)
+      .then(response => response.text())
+      .then(data => {
+        const lines = data.trim().split('\n');
+        const discussions = lines.slice(1).map(line => {
+          const [nama, pesan] = line.split('\t');
+          return { nama, pesan };
+        });
+
+        const container = document.getElementById('diskusi-container');
+        container.innerHTML = '';
+
+        discussions.forEach(d => {
+          const el = document.createElement('div');
+          el.className = 'bg-gray-50 p-3 rounded-md border border-gray-200';
+          el.innerHTML = `<p class="text-sm"><strong>${d.nama}:</strong> ${d.pesan}</p>`;
+          container.appendChild(el);
+        });
+      });
+  </script>
+
+</body>
+</html>
