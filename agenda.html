@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agenda Kegiatan Masjid</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <header class="bg-green-700 text-white p-4 shadow-md">
+    <h1 class="text-xl font-bold text-center">Agenda Kegiatan Masjid</h1>
+  </header>
+
+  <main class="p-4 space-y-4 max-w-xl mx-auto" id="agenda-container">
+    <p class="text-center text-gray-500">Memuat data agenda dari Google Sheet...</p>
+  </main>
+
+  <footer class="text-center text-gray-500 text-sm py-4">
+    &copy; 2025 Masjid Produktif. Semua hak dilindungi.
+  </footer>
+
+  <script>
+    const tsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTuDb3C_2GcjKKJot8hR6gFRfdLPIPqjJy6Dxsu1Efs8BhmBpTrBTGlTjfzaSYCQ9Vqx2N1UTlaQfqX/pub?output=tsv";
+
+    fetch(tsvUrl)
+      .then(response => response.text())
+      .then(data => {
+        const lines = data.trim().split('\n');
+        const rows = lines.slice(1); // Lewati header
+        const container = document.getElementById('agenda-container');
+        container.innerHTML = ''; // Kosongkan pesan awal
+
+        rows.forEach(row => {
+          const [judul, pemateri, tanggal, jam, deskripsi] = row.split('\t');
+
+          const card = document.createElement('div');
+          card.className = "bg-white p-4 rounded-xl shadow";
+
+          card.innerHTML = `
+            <h2 class="text-lg font-semibold text-green-700">${judul}</h2>
+            <p class="text-sm text-gray-700">${pemateri ? pemateri + ' | ' : ''}${tanggal} | ${jam} WIB</p>
+            <p class="text-sm mt-2 text-gray-600">${deskripsi}</p>
+          `;
+
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        document.getElementById('agenda-container').innerHTML = `<p class="text-red-500">Gagal memuat data agenda.</p>`;
+        console.error("TSV Load Error:", err);
+      });
+  </script>
+
+</body>
+</html>
