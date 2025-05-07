@@ -4,132 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelas Keterampilan Masjid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
+        .fade-in {
+            animation: fadeIn 1.2s ease-in-out both;
         }
-
-        header {
-            background-color: #15803DFF;
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-        }
-
-        header h1 {
-            font-size: 1.8em; /* Ukuran font judul yang lebih kecil */
-            margin: 0;
-        }
-
-        header p {
-            font-size: 1em;
-            margin-top: 5px;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .class-card {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            padding: 15px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .class-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .class-card h3 {
-            font-size: 1.3em;
-            color: #15803DFF;
-        }
-
-        .class-card p {
-            font-size: 0.9em;
-            color: #666;
-            margin: 10px 0;
-        }
-
-        .cta-button {
-            background-color: #15803DFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            display: block;
-            width: 100%;
-            max-width: 200px;
-            margin: 20px auto; /* Center the button */
-            text-align: center;
-        }
-
-        .cta-button:hover {
-            background-color: #145c2d;
-            transform: scale(1.05);
-        }
-
-        footer {
-            background-color: #15803DFF;
-            color: white;
-            text-align: center;
-            padding: 15px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-green-100 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
 
-<header>
-    <h1>Kelas Keterampilan Masjid</h1>
-    <p>Belajar Keterampilan Baru, Tingkatkan Pengetahuan & Keahlianmu!</p>
-</header>
+  <header class="bg-green-700 text-white py-4 shadow-lg">
+    <div class="text-center space-y-1">
+      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">🌙 Kelas Keterampilan Masjid</h1>
+      <p class="text-xs italic text-green-100">"Belajar keterampilan baru, tingkatkan pengetahuan & keahlianmu!"</p>
+    </div>
+  </header>
 
-<div class="container">
-    <div class="class-card">
-        <h3>Kelas Menjahit</h3>
-        <p>Belajar menjahit dari dasar hingga mahir, cocok untuk pemula.</p>
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
+      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
+        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Menjahit</h3>
+        <p class="text-gray-500">Belajar menjahit dari dasar hingga mahir, cocok untuk pemula.</p>
+      </div>
+      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
+        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Coding</h3>
+        <p class="text-gray-500">Pelajari dasar pemrograman hingga web development.</p>
+      </div>
+      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
+        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Bisnis</h3>
+        <p class="text-gray-500">Belajar cara memulai dan mengelola bisnis sukses dari nol.</p>
+      </div>
+      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
+        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Pertanian</h3>
+        <p class="text-gray-500">Pahami teknik bertani modern dan efisien untuk masa depan.</p>
+      </div>
     </div>
-    <div class="class-card">
-        <h3>Kelas Coding</h3>
-        <p>Pelajari dasar pemrograman hingga web development.</p>
-    </div>
-    <div class="class-card">
-        <h3>Kelas Bisnis</h3>
-        <p>Belajar cara memulai dan mengelola bisnis sukses dari nol.</p>
-    </div>
-    <div class="class-card">
-        <h3>Kelas Pertanian</h3>
-        <p>Pahami teknik bertani modern dan efisien untuk masa depan.</p>
-    </div>
-</div>
+  </main>
 
-<!-- Tombol dipindahkan di luar container untuk berada di bawah tengah -->
-<a href="https://forms.gle/your-google-form-link" class="cta-button" target="_blank">Daftar Sekarang</a>
+  <a href="https://forms.gle/your-google-form-link" class="cta-button bg-green-700 text-white py-3 px-6 rounded-full text-xl text-center mx-auto mb-6 max-w-xs block hover:bg-green-800 transition duration-200 ease-in-out">Daftar Sekarang</a>
 
-<footer>
-    <p>&copy; 2025 Kelas Keterampilan Masjid | Semua Hak Cipta Dilindungi</p>
-</footer>
+  <footer class="text-center text-green-700 text-sm py-5 bg-green-100 border-t border-green-200">
+    &copy; 2025 Kelas Keterampilan Masjid | Semua Hak Cipta Dilindungi
+  </footer>
 
 </body>
 </html>
