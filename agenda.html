@@ -2,23 +2,36 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agenda Kegiatan Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gradient-to-br from-green-100 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
 
-  <header class="bg-green-700 text-white p-4 shadow-md">
-    <h1 class="text-2xl font-bold text-center">Agenda Kegiatan Masjid</h1>
-    <p class="text-center mt-1 text-base">Temukan berbagai kegiatan dan acara yang akan berlangsung di masjid kami.</p>
+  <header class="bg-green-700 text-white py-4 shadow-lg">
+    <div class="text-center space-y-1">
+      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">📅 Agenda Kegiatan Masjid</h1>
+      <p class="text-xs italic text-green-100">"Catatan kegiatan untuk menyemangati amal"</p>
+    </div>
   </header>
 
-  <main class="p-4 space-y-4 max-w-xl mx-auto" id="agenda-container">
-    <p class="text-center text-gray-500">Memuat data agenda dari Google Sheet...</p>
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div class="bg-white max-w-2xl w-full p-8 rounded-3xl shadow-xl fade-in border border-green-200 space-y-6" id="agenda-container">
+      <p class="text-gray-400 text-center animate-pulse">Memuat agenda kegiatan...</p>
+    </div>
   </main>
 
-  <footer class="text-center text-gray-500 text-sm py-4">
-    &copy; 2025 Masjid Produktif. Semua hak dilindungi.
+  <footer class="text-center text-green-700 text-sm py-5 bg-green-100 border-t border-green-200">
+    &copy; 2025 Masjid Produktif • Jadwal & Kegiatan Harian
   </footer>
 
   <script>
@@ -32,26 +45,32 @@
         const container = document.getElementById('agenda-container');
         container.innerHTML = ''; // Kosongkan pesan awal
 
+        if (rows.length === 0) {
+          container.innerHTML = '<p class="text-gray-500 text-center">Belum ada agenda tersedia.</p>';
+          return;
+        }
+
         rows.forEach(row => {
           const [judul, pemateri, tanggal, jam, deskripsi] = row.split('\t');
 
           const card = document.createElement('div');
-          card.className = "bg-white p-4 rounded-xl shadow";
+          card.className = "bg-green-50 border border-green-200 p-5 rounded-2xl shadow-md";
 
           card.innerHTML = `
-            <h2 class="text-lg font-semibold text-green-700">${judul}</h2>
-            <p class="text-sm text-gray-700">${pemateri ? pemateri + ' | ' : ''}${tanggal} | ${jam} WIB</p>
-            <p class="text-sm mt-2 text-gray-600">${deskripsi}</p>
+            <h2 class="text-xl font-bold text-green-700 mb-1">${judul}</h2>
+            <div class="text-sm text-gray-600 mb-2">
+              ${pemateri ? `<strong>${pemateri}</strong> &bull; ` : ''}${tanggal} &bull; ${jam} WIB
+            </div>
+            <p class="text-gray-700 leading-relaxed text-sm">${deskripsi}</p>
           `;
 
           container.appendChild(card);
         });
       })
       .catch(err => {
-        document.getElementById('agenda-container').innerHTML = `<p class="text-red-500">Gagal memuat data agenda.</p>`;
+        document.getElementById('agenda-container').innerHTML = `<p class="text-red-500 text-center">Gagal memuat data agenda.</p>`;
         console.error("TSV Load Error:", err);
       });
   </script>
-
 </body>
 </html>
