@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelas Keterampilan Masjid</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #15803DFF;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        .class-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 280px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 10px;
+        }
+
+        .class-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .class-card h3 {
+            font-size: 1.5em;
+            color: #15803DFF;
+        }
+
+        .class-card p {
+            font-size: 1em;
+            color: #666;
+            margin: 15px 0;
+        }
+
+        .cta-button {
+            background-color: #15803DFF;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+        }
+
+        .cta-button:hover {
+            background-color: #145c2d;
+        }
+
+        footer {
+            background-color: #15803DFF;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 1200px) {
+            header h1 {
+                font-size: 2.2em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            .class-card {
+                width: 90%;
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .class-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Kelas Keterampilan Masjid</h1>
+    <p>Belajar Keterampilan Baru, Tingkatkan Pengetahuan & Keahlianmu!</p>
+</header>
+
+<div class="container">
+    <div class="class-card">
+        <h3>Kelas Menjahit</h3>
+        <p>Belajar menjahit dari dasar hingga mahir, cocok untuk pemula.</p>
+    </div>
+    <div class="class-card">
+        <h3>Kelas Coding</h3>
+        <p>Pelajari dasar pemrograman hingga web development.</p>
+    </div>
+    <div class="class-card">
+        <h3>Kelas Bisnis</h3>
+        <p>Belajar cara memulai dan mengelola bisnis sukses dari nol.</p>
+    </div>
+    <div class="class-card">
+        <h3>Kelas Pertanian</h3>
+        <p>Pahami teknik bertani modern dan efisien untuk masa depan.</p>
+    </div>
+
+    <a href="https://forms.gle/your-google-form-link" class="cta-button" target="_blank">Daftar Sekarang</a>
+</div>
+
+<footer>
+    <p>&copy; 2025 Kelas Keterampilan Masjid | Semua Hak Cipta Dilindungi</p>
+</footer>
+
+</body>
+</html>
