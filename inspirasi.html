@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inspirasi Harian Islami</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-br from-green-100 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
+
+  <header class="bg-green-700 text-white py-8 shadow-lg">
+    <div class="text-center space-y-2">
+      <h1 class="text-4xl font-extrabold tracking-tight drop-shadow-lg">🌙 Inspirasi Harian Islami</h1>
+      <p class="text-sm italic text-green-100">"Secercah cahaya untuk menyemangati hari"</p>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center p-6">
+    <div id="inspirasi" class="bg-white max-w-xl w-full p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
+      <p class="text-gray-400 animate-pulse">Memuat inspirasi...</p>
+    </div>
+  </main>
+
+  <footer class="text-center text-green-700 text-sm py-5 bg-green-100 border-t border-green-200">
+    &copy; 2025 Masjid Produktif • Hadis & Hikmah Harian
+  </footer>
+
+  <script>
+    async function loadInspirasi() {
+      const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSNhe3T0XKc3u2tkUQmTERfK4bpyy1WFi78aZTzfYOSdZVOS2_M2Oxghicvli-7fheD23zfTXhPOYQx/pub?output=tsv';
+      const container = document.getElementById('inspirasi');
+
+      try {
+        const res = await fetch(url);
+        const tsv = await res.text();
+        const rows = tsv.trim().split('\n').slice(1).map(row => row.split('\t'));
+
+        if (rows.length === 0) {
+          container.innerHTML = '<p class="text-gray-500">Belum ada inspirasi tersedia.</p>';
+          return;
+        }
+
+        const randomIndex = Math.floor(Math.random() * rows.length);
+        const [judul, isi, sumber] = rows[randomIndex];
+
+        container.innerHTML = `
+          <h2 class="text-2xl font-bold text-green-700 mb-3">${judul}</h2>
+          <div class="w-10 h-1 bg-green-400 mx-auto mb-4 rounded-full"></div>
+          <blockquote class="italic text-gray-700 text-lg leading-relaxed mb-4">“${isi}”</blockquote>
+          <p class="text-sm text-gray-500">📚 Sumber: ${sumber}</p>
+        `;
+      } catch (e) {
+        container.innerHTML = '<p class="text-red-500">Gagal memuat data inspirasi.</p>';
+      }
+    }
+
+    loadInspirasi();
+  </script>
+</body>
+</html>
