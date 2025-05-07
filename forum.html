@@ -5,41 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forum Jamaah Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 1s ease-in-out both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body class="bg-gradient-to-br from-green-50 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
 
-  <header class="bg-green-700 text-white p-4 shadow-md">
-    <h1 class="text-xl font-bold text-center">Forum Jamaah Masjid</h1>
+  <header class="bg-green-700 text-white py-4 shadow-lg">
+    <div class="text-center space-y-1">
+      <h1 class="text-2xl md:text-3xl font-extrabold drop-shadow-lg">💬 Forum Jamaah Masjid</h1>
+      <p class="text-xs italic text-green-100">Tempat silaturahmi, diskusi, dan saling menguatkan</p>
+    </div>
   </header>
 
-  <main class="p-4 max-w-2xl mx-auto space-y-6">
-    <section class="bg-white p-6 rounded-xl shadow">
-      <h2 class="text-lg font-semibold text-green-700 mb-2">Tentang Forum Ini</h2>
-      <p class="text-gray-700 text-sm">
-        Forum ini dibuat untuk mempererat silaturahmi, berbagi ilmu, dan berdiskusi seputar kegiatan masjid dan kehidupan sehari-hari yang islami.
+  <main class="flex-grow px-4 py-8 max-w-3xl mx-auto space-y-8">
+    <section class="bg-white rounded-3xl p-6 shadow-lg fade-in border border-green-200">
+      <h2 class="text-xl font-bold text-green-700 mb-2">Tentang Forum Ini</h2>
+      <p class="text-sm text-gray-700 leading-relaxed">
+        Forum ini dibuat untuk mempererat silaturahmi antar jamaah, berbagi ilmu, serta berdiskusi seputar kegiatan masjid
+        dan kehidupan sehari-hari yang islami. Semua jamaah dipersilakan untuk ikut berdiskusi secara sopan dan membangun.
       </p>
     </section>
 
-    <section class="bg-white p-6 rounded-xl shadow">
-      <h2 class="text-lg font-semibold text-green-700 mb-4">Diskusi Terbaru</h2>
-
-      <div class="space-y-3" id="diskusi-container">
-        <p class="text-gray-500 text-sm">Memuat diskusi terbaru...</p>
+    <section class="bg-white rounded-3xl p-6 shadow-lg fade-in border border-green-200">
+      <h2 class="text-xl font-bold text-green-700 mb-4">Diskusi Terbaru</h2>
+      <div class="space-y-4" id="diskusi-container">
+        <p class="text-gray-500 text-sm italic">Memuat diskusi terbaru...</p>
       </div>
     </section>
 
-    <section class="bg-white p-6 rounded-xl shadow text-center">
-      <h2 class="text-lg font-semibold text-green-700 mb-2">Ingin Ikut Diskusi Lebih Lanjut?</h2>
-      <p class="text-gray-700 text-sm mb-4">Gabung grup WhatsApp resmi Jamaah Masjid untuk berdiskusi langsung.</p>
+    <section class="bg-white rounded-3xl p-6 shadow-lg fade-in border border-green-200 text-center">
+      <h2 class="text-xl font-bold text-green-700 mb-2">Ingin Ikut Diskusi Langsung?</h2>
+      <p class="text-sm text-gray-700 mb-4">Gabung grup WhatsApp resmi Jamaah Masjid dan berinteraksi secara langsung.</p>
       <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" target="_blank"
-         class="inline-block bg-green-600 text-white px-6 py-2 rounded-full shadow hover:bg-green-700 transition">
+         class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition shadow">
         🤝 Gabung Grup WA
       </a>
     </section>
   </main>
 
-  <footer class="text-center text-gray-500 text-sm py-4">
-    &copy; 2025 Masjid Produktif. Semua hak dilindungi.
+  <footer class="bg-green-100 text-center text-sm text-green-700 py-4 border-t border-green-200">
+    &copy; 2025 Masjid Produktif • Forum Jamaah
   </footer>
 
   <script>
@@ -57,10 +69,14 @@
         const container = document.getElementById('diskusi-container');
         container.innerHTML = '';
 
+        if (discussions.length === 0) {
+          container.innerHTML = '<p class="text-sm text-gray-500 italic">Belum ada diskusi saat ini.</p>';
+        }
+
         discussions.forEach(d => {
           const el = document.createElement('div');
-          el.className = 'bg-gray-50 p-3 rounded-md border border-gray-200';
-          el.innerHTML = `<p class="text-sm"><strong>${d.nama}:</strong> ${d.pesan}</p>`;
+          el.className = 'bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm text-left';
+          el.innerHTML = `<p class="text-sm text-gray-800"><strong class="text-green-700">${d.nama}:</strong> ${d.pesan}</p>`;
           container.appendChild(el);
         });
       });
