@@ -27,7 +27,11 @@
       text-align: center;
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: #444;
+      color: transparent; /* Membuat teks transparan agar gradasi terlihat */
+      background: linear-gradient(45deg, #ff6f61, #ffcc00, #6b9ac4, #a1c4fd, #f69e7f);
+      background-clip: text; /* Memotong background hanya pada teks */
+      -webkit-background-clip: text; /* Untuk memastikan kompatibilitas dengan Safari */
+      font-weight: bold;
     }
 
     .container {
