@@ -1,57 +1,43 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Forum Jamaah Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .fade-in {
-      animation: fadeIn 1s ease-in-out both;
+      animation: fadeIn 0.5s ease-in-out both;
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-green-50 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
+<body class="bg-[#eae6df] font-sans min-h-screen flex flex-col">
 
-  <header class="bg-green-700 text-white py-4 shadow-lg">
-    <div class="text-center space-y-1">
-      <h1 class="text-2xl md:text-3xl font-extrabold drop-shadow-lg">💬 Forum Jamaah Masjid</h1>
-      <p class="text-xs italic text-green-100">Tempat silaturahmi, diskusi, dan saling menguatkan</p>
+  <header class="bg-green-700 text-white py-3 shadow-md sticky top-0 z-10">
+    <div class="px-4 flex items-center space-x-2">
+      <span class="text-xl">💬</span>
+      <h1 class="text-lg font-semibold">Forum Jamaah Masjid</h1>
     </div>
   </header>
 
-  <main class="flex-grow px-4 py-8 max-w-3xl mx-auto space-y-8">
-    <section class="bg-white rounded-3xl p-6 shadow-lg fade-in border border-green-200">
-      <h2 class="text-xl font-bold text-green-700 mb-2">Tentang Forum Ini</h2>
-      <p class="text-sm text-gray-700 leading-relaxed">
-        Forum ini dibuat untuk mempererat silaturahmi antar jamaah, berbagi ilmu, serta berdiskusi seputar kegiatan masjid
-        dan kehidupan sehari-hari yang islami. Semua jamaah dipersilakan untuk ikut berdiskusi secara sopan dan membangun.
-      </p>
-    </section>
-
-    <section class="bg-white rounded-3xl p-6 shadow-lg fade-in border border-green-200">
-      <h2 class="text-xl font-bold text-green-700 mb-4">Diskusi Terbaru</h2>
-      <div class="space-y-4" id="diskusi-container">
-        <p class="text-gray-500 text-sm italic">Memuat diskusi terbaru...</p>
-      </div>
-    </section>
-
-    <section class="bg-white rounded-3xl p-6 shadow-lg fade-in border border-green-200 text-center">
-      <h2 class="text-xl font-bold text-green-700 mb-2">Ingin Ikut Diskusi Langsung?</h2>
-      <p class="text-sm text-gray-700 mb-4">Gabung grup WhatsApp resmi Jamaah Masjid dan berinteraksi secara langsung.</p>
-      <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" target="_blank"
-         class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full transition shadow">
-        🤝 Gabung Grup WA
-      </a>
-    </section>
+  <main class="flex-grow px-4 py-6 overflow-y-auto max-w-md w-full mx-auto space-y-4">
+    <div id="diskusi-container" class="space-y-3 fade-in">
+      <p class="text-gray-500 text-sm italic text-center">Memuat diskusi terbaru...</p>
+    </div>
   </main>
 
-  <footer class="bg-green-100 text-center text-sm text-green-700 py-4 border-t border-green-200">
-    &copy; 2025 Masjid Produktif • Forum Jamaah
+  <footer class="bg-green-100 text-center text-sm text-green-700 py-2 border-t border-green-200">
+    <div>&copy; 2025 Masjid Produktif</div>
+    <div>
+      <a href="https://chat.whatsapp.com/YOUR_GROUP_LINK_HERE" target="_blank"
+         class="text-green-600 font-semibold hover:underline">
+        Gabung Grup WhatsApp
+      </a>
+    </div>
   </footer>
 
   <script>
@@ -70,13 +56,13 @@
         container.innerHTML = '';
 
         if (discussions.length === 0) {
-          container.innerHTML = '<p class="text-sm text-gray-500 italic">Belum ada diskusi saat ini.</p>';
+          container.innerHTML = '<p class="text-sm text-gray-500 italic text-center">Belum ada diskusi saat ini.</p>';
         }
 
         discussions.forEach(d => {
           const el = document.createElement('div');
-          el.className = 'bg-gray-50 p-4 rounded-lg border border-gray-200 shadow-sm text-left';
-          el.innerHTML = `<p class="text-sm text-gray-800"><strong class="text-green-700">${d.nama}:</strong> ${d.pesan}</p>`;
+          el.className = 'max-w-xs bg-white p-3 rounded-2xl shadow-md text-sm text-gray-800';
+          el.innerHTML = `<p><strong class="text-green-700">${d.nama}:</strong><br/>${d.pesan}</p>`;
           container.appendChild(el);
         });
       });
