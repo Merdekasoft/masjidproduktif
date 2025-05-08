@@ -13,24 +13,48 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .wave-bg {
+      background: linear-gradient(135deg, rgba(0,255,255,0.1) 25%, rgba(0,128,255,0.2) 75%);
+      background-size: 400% 400%;
+      animation: wave 10s ease-in-out infinite;
+    }
+    @keyframes wave {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .typing {
+      display: block;
+      white-space: normal;
+      overflow: hidden;
+      word-wrap: break-word;
+      animation: blink .75s step-end infinite;
+      border-right: 2px solid #06b6d4;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
+<body class="bg-gradient-to-br from-blue-100 via-white to-cyan-100 font-sans min-h-screen flex flex-col">
 
-  <header class="bg-green-700 text-white py-4 shadow-lg">
+  <header class="bg-cyan-700 text-white py-4 shadow-lg wave-bg">
     <div class="text-center space-y-1">
-      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">🌙 Inspirasi Harian Islami</h1>
-      <p class="text-xs italic text-green-100">"Secercah cahaya untuk menyemangati hari"</p>
+      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">🌊 Inspirasi Harian Islami</h1>
+      <p class="text-xs italic text-cyan-100">"Secercah cahaya untuk menyemangati hari"</p>
     </div>
   </header>
 
   <main class="flex-grow flex items-center justify-center p-6">
-    <div id="inspirasi" class="bg-white max-w-xl w-full p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
+    <div id="inspirasi" class="bg-white max-w-xl w-full p-8 rounded-3xl shadow-xl fade-in text-center border border-cyan-200">
       <p class="text-gray-400 animate-pulse">Memuat inspirasi...</p>
     </div>
   </main>
 
-  <footer class="text-center text-green-700 text-sm py-5 bg-green-100 border-t border-green-200">
+  <footer class="text-center text-cyan-700 text-sm py-5 bg-cyan-100 border-t border-cyan-200">
     &copy; 2025 Masjid Produktif • Hadis & Hikmah Harian
   </footer>
 
@@ -53,9 +77,9 @@
         const [judul, isi, sumber] = rows[randomIndex];
 
         container.innerHTML = `
-          <h2 class="text-2xl font-bold text-green-700 mb-3">${judul}</h2>
-          <div class="w-10 h-1 bg-green-400 mx-auto mb-4 rounded-full"></div>
-          <blockquote class="italic text-gray-700 text-lg leading-relaxed mb-4">“${isi}”</blockquote>
+          <h2 class="text-2xl font-bold text-cyan-700 mb-3">${judul}</h2>
+          <div class="w-10 h-1 bg-cyan-400 mx-auto mb-4 rounded-full"></div>
+          <blockquote class="italic text-gray-700 text-lg leading-relaxed mb-4"><span class="typing">“${isi}”</span></blockquote>
           <p class="text-sm text-gray-500">📚 Sumber: ${sumber}</p>
         `;
       } catch (e) {
