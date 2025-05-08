@@ -6,7 +6,6 @@
   <title>Kelas Keterampilan Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Animasi Fade-in */
     .fade-in {
       animation: fadeIn 0.8s ease-in-out both;
     }
@@ -15,7 +14,14 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Latar buku tulis bergaris */
+    .slide-in-up {
+      animation: slideInUp 1s ease-in-out both;
+    }
+    @keyframes slideInUp {
+      0% { transform: translateY(100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
     .paper-texture {
       background: repeating-linear-gradient(
         to bottom,
@@ -28,7 +34,6 @@
       padding-left: 40px;
     }
 
-    /* Garis merah margin kiri seperti kertas binder */
     .paper-texture::before {
       content: "";
       position: absolute;
@@ -39,7 +44,6 @@
       background-color: #f44336;
     }
 
-    /* Kartu */
     .book-card {
       background: white;
       padding: 1.5rem;
@@ -47,6 +51,12 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       border-left: 4px solid #FFC107;
       margin-bottom: 1.5rem;
+      transition: transform 0.3s;
+      opacity: 0;
+    }
+
+    .book-card:hover {
+      transform: translateY(-5px);
     }
 
     .book-card h3 {
@@ -57,13 +67,18 @@
       color: #555;
     }
 
-    /* Tombol CTA */
     .cta-button {
       background: linear-gradient(45deg, #FFEB3B, #FFC107);
       color: white;
+      animation: pulse 1.5s infinite;
     }
 
-    /* Header seperti buku */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
     .header {
       background-color: #FFF9C4;
       color: #333;
@@ -76,10 +91,11 @@
       left: 0;
       width: 100%;
       z-index: 50;
+      animation: slideInUp 1s ease-out both;
     }
 
     main {
-      padding-bottom: 120px; /* ruang untuk header di bawah */
+      padding-bottom: 120px;
     }
   </style>
 </head>
@@ -90,25 +106,25 @@
     <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
 
       <!-- Card 1 -->
-      <div class="fade-in book-card">
+      <div id="card1" class="book-card">
         <h3 class="text-xl font-semibold">🧵 Menjahit</h3>
         <p class="text-sm">Dasar hingga mahir.</p>
       </div>
 
       <!-- Card 2 -->
-      <div class="fade-in book-card">
+      <div id="card2" class="book-card">
         <h3 class="text-xl font-semibold">💻 Coding</h3>
         <p class="text-sm">Dasar pemrograman web.</p>
       </div>
 
       <!-- Card 3 -->
-      <div class="fade-in book-card">
+      <div id="card3" class="book-card">
         <h3 class="text-xl font-semibold">📈 Bisnis</h3>
         <p class="text-sm">Dari nol ke usaha nyata.</p>
       </div>
 
       <!-- Card 4 -->
-      <div class="fade-in book-card">
+      <div id="card4" class="book-card">
         <h3 class="text-xl font-semibold">🌱 Pertanian</h3>
         <p class="text-sm">Teknik bertani modern.</p>
       </div>
@@ -124,11 +140,23 @@
     </div>
   </main>
 
-  <!-- Header di Bawah -->
+  <!-- Bottom Header -->
   <header class="header">
     <h1 class="text-sm sm:text-base md:text-lg font-extrabold">Kelas Keterampilan Masjid</h1>
     <p class="text-xs sm:text-sm mt-1">Kembangkan keterampilan untuk masa depan yang lebih cerdas dan kreatif.</p>
   </header>
+
+  <!-- JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cards = document.querySelectorAll('.book-card');
+      cards.forEach((card, i) => {
+        setTimeout(() => {
+          card.classList.add('fade-in');
+        }, i * 400); // jeda 400ms antar elemen
+      });
+    });
+  </script>
 
 </body>
 </html>
