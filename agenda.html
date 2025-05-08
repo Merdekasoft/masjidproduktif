@@ -5,34 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agenda Kegiatan Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    .fade-in {
-      animation: fadeIn 1.2s ease-in-out both;
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: linear-gradient(135deg, #d1fae5 25%, #fef3c7 100%);
+      z-index: -1;
     }
   </style>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
+<body class="font-sans min-h-screen flex flex-col text-gray-800">
 
-  <header class="bg-green-700 text-white py-4 shadow-lg">
-    <div class="text-center space-y-1">
-      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">📅 Agenda Kegiatan Masjid</h1>
-      <p class="text-xs italic text-green-100">"Catatan kegiatan untuk menyemangati amal"</p>
+  <header class="bg-white/40 text-emerald-900 py-6 shadow-xl backdrop-blur-md border-b border-white/30">
+    <div class="text-center space-y-2">
+      <h1 class="text-4xl font-black tracking-tight drop-shadow-xl animate-fade-in-up"><i class="fas fa-calendar-week mr-2"></i>Agenda Kegiatan Masjid</h1>
+      <p class="text-sm italic text-emerald-700">"Catatan kegiatan untuk menyemangati amal"</p>
     </div>
   </header>
 
-  <main class="flex-grow flex items-center justify-center p-6">
-    <div class="bg-white max-w-2xl w-full p-8 rounded-3xl shadow-xl fade-in border border-green-200 space-y-6" id="agenda-container">
-      <p class="text-gray-400 text-center animate-pulse">Memuat agenda kegiatan...</p>
+  <main class="flex-grow flex items-center justify-center p-8">
+    <div class="glass max-w-3xl w-full p-8 rounded-[2rem] shadow-2xl animate-fade-in-up border border-white/30 space-y-6" id="agenda-container">
+      <p class="text-gray-700 text-center"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat agenda kegiatan...</p>
     </div>
   </main>
 
-  <footer class="text-center text-green-700 text-sm py-5 bg-green-100 border-t border-green-200">
-    &copy; 2025 Masjid Produktif • Jadwal & Kegiatan Harian
+  <footer class="text-center text-emerald-900 text-sm py-5 bg-white/40 border-t border-white/30 backdrop-blur-md">
+    &copy; 2025 <i class="fas fa-mosque"></i> Masjid Produktif • Jadwal & Kegiatan Harian
   </footer>
+
+  <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out both;
+    }
+  </style>
 
   <script>
     const tsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTuDb3C_2GcjKKJot8hR6gFRfdLPIPqjJy6Dxsu1Efs8BhmBpTrBTGlTjfzaSYCQ9Vqx2N1UTlaQfqX/pub?output=tsv";
@@ -41,9 +57,9 @@
       .then(response => response.text())
       .then(data => {
         const lines = data.trim().split('\n');
-        const rows = lines.slice(1); // Lewati header
+        const rows = lines.slice(1);
         const container = document.getElementById('agenda-container');
-        container.innerHTML = ''; // Kosongkan pesan awal
+        container.innerHTML = '';
 
         if (rows.length === 0) {
           container.innerHTML = '<p class="text-gray-500 text-center">Belum ada agenda tersedia.</p>';
@@ -54,11 +70,11 @@
           const [judul, pemateri, tanggal, jam, deskripsi] = row.split('\t');
 
           const card = document.createElement('div');
-          card.className = "bg-green-50 border border-green-200 p-5 rounded-2xl shadow-md";
+          card.className = "bg-white/70 backdrop-blur-md border border-emerald-300 p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in-up";
 
           card.innerHTML = `
-            <h2 class="text-xl font-bold text-green-700 mb-1">${judul}</h2>
-            <div class="text-sm text-gray-600 mb-2">
+            <h2 class="text-2xl font-extrabold text-emerald-800 mb-2"><i class="fas fa-bullhorn mr-2 text-emerald-600"></i>${judul}</h2>
+            <div class="text-sm text-gray-600 mb-3">
               ${pemateri ? `<strong>${pemateri}</strong> &bull; ` : ''}${tanggal} &bull; ${jam} WIB
             </div>
             <p class="text-gray-700 leading-relaxed text-sm">${deskripsi}</p>
