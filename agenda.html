@@ -9,8 +9,8 @@
   <style>
     .glass {
       background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
     }
     body::before {
       content: '';
@@ -19,36 +19,35 @@
       background-image: linear-gradient(135deg, #d1fae5 25%, #fef3c7 100%);
       z-index: -1;
     }
-  </style>
-</head>
-<body class="font-sans min-h-screen flex flex-col text-gray-800">
-
-  <header class="bg-white/40 text-emerald-900 py-6 shadow-xl backdrop-blur-md border-b border-white/30">
-    <div class="text-center space-y-2">
-      <h1 class="text-4xl font-black tracking-tight drop-shadow-xl animate-fade-in-up"><i class="fas fa-calendar-week mr-2"></i>Agenda Kegiatan Masjid</h1>
-      <p class="text-sm italic text-emerald-700">"Catatan kegiatan untuk menyemangati amal"</p>
-    </div>
-  </header>
-
-  <main class="flex-grow flex items-center justify-center p-8">
-    <div class="glass max-w-3xl w-full p-8 rounded-[2rem] shadow-2xl animate-fade-in-up border border-white/30 space-y-6" id="agenda-container">
-      <p class="text-gray-700 text-center"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat agenda kegiatan...</p>
-    </div>
-  </main>
-
-  <footer class="text-center text-emerald-900 text-sm py-5 bg-white/40 border-t border-white/30 backdrop-blur-md">
-    &copy; 2025 <i class="fas fa-mosque"></i> Masjid Produktif • Jadwal & Kegiatan Harian
-  </footer>
-
-  <style>
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
     .animate-fade-in-up {
-      animation: fadeInUp 0.8s ease-out both;
+      animation: fadeInUp 0.6s ease-out both;
     }
   </style>
+</head>
+<body class="font-sans min-h-screen flex flex-col text-gray-800 text-sm">
+
+  <header class="bg-white/30 text-emerald-900 py-4 shadow-md backdrop-blur-sm border-b border-white/30">
+    <div class="text-center space-y-1">
+      <h1 class="text-2xl font-bold drop-shadow animate-fade-in-up">
+        <i class="fas fa-calendar-week mr-1"></i>Agenda Kegiatan Masjid
+      </h1>
+      <p class="text-xs italic text-emerald-700">"Catatan kegiatan untuk menyemangati amal"</p>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center p-4">
+    <div class="glass max-w-2xl w-full p-4 rounded-xl shadow-lg animate-fade-in-up border border-white/20 space-y-4" id="agenda-container">
+      <p class="text-gray-600 text-center"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat agenda kegiatan...</p>
+    </div>
+  </main>
+
+  <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm">
+    &copy; 2025 <i class="fas fa-mosque"></i> Masjid Produktif • Jadwal & Kegiatan Harian
+  </footer>
 
   <script>
     const tsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTuDb3C_2GcjKKJot8hR6gFRfdLPIPqjJy6Dxsu1Efs8BhmBpTrBTGlTjfzaSYCQ9Vqx2N1UTlaQfqX/pub?output=tsv";
@@ -70,14 +69,16 @@
           const [judul, pemateri, tanggal, jam, deskripsi] = row.split('\t');
 
           const card = document.createElement('div');
-          card.className = "bg-white/70 backdrop-blur-md border border-emerald-300 p-6 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 animate-fade-in-up";
+          card.className = "bg-white/80 backdrop-blur border border-emerald-200 p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 animate-fade-in-up";
 
           card.innerHTML = `
-            <h2 class="text-2xl font-extrabold text-emerald-800 mb-2"><i class="fas fa-bullhorn mr-2 text-emerald-600"></i>${judul}</h2>
-            <div class="text-sm text-gray-600 mb-3">
+            <h2 class="text-center text-lg font-semibold text-emerald-800 mb-1">
+              <i class="fas fa-bullhorn mr-1 text-emerald-600"></i>${judul}
+            </h2>
+            <div class="text-xs text-gray-600 mb-2 text-center">
               ${pemateri ? `<strong>${pemateri}</strong> &bull; ` : ''}${tanggal} &bull; ${jam} WIB
             </div>
-            <p class="text-gray-700 leading-relaxed text-sm">${deskripsi}</p>
+            <p class="text-gray-700 leading-relaxed text-xs text-center">${deskripsi}</p>
           `;
 
           container.appendChild(card);
