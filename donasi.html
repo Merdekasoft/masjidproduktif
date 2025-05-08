@@ -5,46 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Donasi Produktif</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    .fade-in {
-      animation: fadeIn 0.8s ease-in-out both;
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: linear-gradient(135deg, #d1fae5 25%, #fef3c7 100%);
+      z-index: -1;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in both;
     }
   </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans min-h-screen flex flex-col">
+<body class="font-sans min-h-screen flex flex-col text-gray-800 text-sm animate-fade-in">
 
-  <header class="bg-gray-900 text-white py-3 shadow-sm">
-    <div class="text-center px-4">
-      <h1 class="text-lg font-semibold tracking-tight">Donasi Produktif</h1>
-      <p class="text-xs mt-1 text-gray-300">Mendukung kerja nyata dan pemberdayaan</p>
+  <header class="bg-white/30 text-emerald-900 py-4 shadow-md backdrop-blur-sm border-b border-white/30 animate-fade-in-up">
+    <div class="text-center space-y-1">
+      <h1 class="text-2xl font-bold drop-shadow animate-fade-in-up">
+        <i class="fas fa-hand-holding-heart mr-1"></i>Donasi Produktif
+      </h1>
+      <p class="text-xs italic text-emerald-700 animate-fade-in">"Dukung gerakan yang berdampak nyata dan berkelanjutan"</p>
     </div>
   </header>
 
-  <main class="flex-grow p-4 flex items-center justify-center">
-    <div class="bg-white rounded-xl shadow-md p-5 max-w-sm w-full fade-in border border-gray-300 text-center">
+  <main class="flex-grow flex items-center justify-center p-4 animate-fade-in">
+    <div class="glass max-w-md w-full p-6 rounded-xl shadow-lg border border-white/20 space-y-4 animate-fade-in-up text-center">
       <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" alt="Donasi Ikon"
-           class="w-16 h-16 mx-auto mb-4"/>
+           class="w-16 h-16 mx-auto mb-3"/>
 
-      <h2 class="text-lg font-semibold text-gray-800 mb-2">Bantu Gerakan Produktif</h2>
+      <h2 class="text-lg font-semibold text-emerald-900 mb-2">Bantu Gerakan Produktif</h2>
 
-      <p class="text-sm text-gray-600 leading-relaxed mb-4">
-        Donasi Anda akan digunakan untuk mendukung kegiatan yang menghasilkan: pelatihan kerja, usaha kecil, dan proyek yang mandiri secara ekonomi. Langsung dirasakan, bukan sekadar bantuan sementara.
+      <p class="text-sm text-gray-700 leading-relaxed">
+        Donasi Anda akan digunakan untuk mendukung kegiatan seperti pelatihan kerja, usaha kecil, dan proyek mandiri secara ekonomi. Dampak langsung, bukan bantuan sementara.
       </p>
 
       <a href="https://sociabuzz.com/masjidproduktif/donate" target="_blank"
-         class="bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium px-4 py-2 rounded-full transition-all shadow-sm inline-block">
-        Donasi Sekarang
+         class="bg-emerald-700 hover:bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded-full shadow-md transition-all inline-block mt-3">
+        <i class="fas fa-donate mr-1"></i> Donasi Sekarang
       </a>
 
-      <p class="text-xs text-gray-400 mt-3">Disalurkan melalui platform terpercaya: Sociabuzz</p>
+      <p class="text-xs text-gray-600 mt-2">Disalurkan melalui platform terpercaya: Sociabuzz</p>
     </div>
   </main>
 
-  <footer class="text-center text-xs text-gray-600 py-3 bg-gray-200 border-t border-gray-300">
+  <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm animate-fade-in">
     &copy; 2025 Donasi Produktif • Nyata dan Berkelanjutan
   </footer>
 
