@@ -6,6 +6,7 @@
   <title>Kelas Keterampilan Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* Animasi Fade-in */
     .fade-in {
       animation: fadeIn 0.8s ease-in-out both;
     }
@@ -14,25 +15,45 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Pola Buku Tulis Bergaris (Garis Horizontal) */
+    /* Latar buku tulis bergaris */
     .paper-texture {
-      background: repeating-linear-gradient(to bottom, #f0f0f0 0px, #f0f0f0 1px, #fff 1px, #fff 20px);
+      background: repeating-linear-gradient(
+        to bottom,
+        #ffffff 0px,
+        #ffffff 17px,
+        #d3d3d3 17px,
+        #d3d3d3 18px
+      );
+      position: relative;
+      padding-left: 40px;
     }
 
-    /* Kartu tanpa border kotak, hanya konten */
-    .card {
+    /* Garis merah margin kiri seperti kertas binder */
+    .paper-texture::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 30px;
+      width: 2px;
+      height: 100%;
+      background-color: #f44336;
+    }
+
+    /* Kartu */
+    .book-card {
       background: white;
-      padding: 1rem;
-      margin-bottom: 1rem; /* Mengurangi jarak antar kartu */
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
       border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-left: 4px solid #FFC107;
+      margin-bottom: 1.5rem;
     }
 
-    .card h3 {
-      color: #FF9800; /* Oranye */
+    .book-card h3 {
+      color: #FFC107;
     }
 
-    .card p {
+    .book-card p {
       color: #555;
     }
 
@@ -42,87 +63,49 @@
       color: white;
     }
 
-    /* Font untuk tampilan buku tulis */
-    .book-font {
-      font-family: 'Courier New', Courier, monospace;
-    }
-
+    /* Header seperti buku */
     .header {
-      background-color: #FF9800; /* Warna oranye */
-      color: #fff;
-      padding: 15px;
+      background-color: #FFF9C4;
+      color: #333;
+      padding: 20px;
       text-align: center;
       font-family: 'Courier New', Courier, monospace;
-      border-bottom: 3px solid #FFC107; /* Oranye lebih terang */
+      border-bottom: 3px solid #FDD835;
     }
-
-    /* Ukuran font lebih kecil di layar kecil */
-    @media (max-width: 768px) {
-      .header h1 {
-        font-size: 1.75rem; /* Ukuran font header lebih kecil */
-      }
-
-      .header p {
-        font-size: 0.875rem; /* Ukuran font deskripsi lebih kecil */
-      }
-
-      .card {
-        padding: 1rem;
-      }
-
-      .cta-button {
-        width: 100%; /* Tombol lebih lebar di perangkat kecil */
-        padding: 12px;
-      }
-
-      /* Membuat grid menjadi satu kolom di perangkat kecil */
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card h3 {
-        font-size: 1.25rem; /* Ukuran teks lebih kecil pada kartu */
-      }
-
-      .card p {
-        font-size: 0.875rem;
-      }
-    }
-
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
   <!-- Header -->
   <header class="header">
-    <h1 class="text-xl font-extrabold">Kelas Keterampilan Masjid</h1>
-    <p class="text-sm mt-2">Kembangkan keterampilan untuk masa depan yang cerdas.</p>
+    <h1 class="text-4xl font-extrabold">Kelas Keterampilan Masjid</h1>
+    <p class="text-lg mt-2">Kembangkan keterampilan untuk masa depan yang lebih cerdas dan kreatif.</p>
   </header>
 
   <!-- Main Content -->
   <main class="p-6 max-w-5xl mx-auto paper-texture">
-    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
 
       <!-- Card 1 -->
-      <div class="fade-in card">
+      <div class="fade-in book-card">
         <h3 class="text-xl font-semibold">🧵 Menjahit</h3>
         <p class="text-sm">Dasar hingga mahir.</p>
       </div>
 
       <!-- Card 2 -->
-      <div class="fade-in card">
+      <div class="fade-in book-card">
         <h3 class="text-xl font-semibold">💻 Coding</h3>
         <p class="text-sm">Dasar pemrograman web.</p>
       </div>
 
       <!-- Card 3 -->
-      <div class="fade-in card">
+      <div class="fade-in book-card">
         <h3 class="text-xl font-semibold">📈 Bisnis</h3>
         <p class="text-sm">Dari nol ke usaha nyata.</p>
       </div>
 
       <!-- Card 4 -->
-      <div class="fade-in card">
+      <div class="fade-in book-card">
         <h3 class="text-xl font-semibold">🌱 Pertanian</h3>
         <p class="text-sm">Teknik bertani modern.</p>
       </div>
@@ -139,7 +122,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="text-center text-xs text-gray-500 py-5 border-t mt-10 bg-yellow-300">
+  <footer class="text-center text-xs text-gray-500 py-5 border-t mt-10 bg-yellow-200">
     &copy; 2025 Kelas Keterampilan Masjid
   </footer>
 
