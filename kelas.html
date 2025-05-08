@@ -1,54 +1,76 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelas Keterampilan Masjid</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .fade-in {
-            animation: fadeIn 1.2s ease-in-out both;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas Keterampilan Masjid</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .fade-in {
+      animation: fadeIn 1s ease-in-out both;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-white to-yellow-50 font-sans min-h-screen flex flex-col">
+<body class="bg-gray-50 text-gray-800 font-sans">
 
-  <header class="bg-green-700 text-white py-4 shadow-lg">
-    <div class="text-center space-y-1">
-      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">🌙 Kelas Keterampilan Masjid</h1>
-      <p class="text-xs italic text-green-100">"Belajar keterampilan baru, tingkatkan pengetahuan & keahlianmu!"</p>
+  <!-- Header -->
+  <header class="bg-emerald-600 text-white py-3 shadow-md">
+    <div class="text-center">
+      <h1 class="text-xl font-semibold tracking-tight">🌙 Kelas Keterampilan Masjid</h1>
+      <p class="text-sm text-emerald-100">Belajar keterampilan baru untuk masa depan yang lebih baik</p>
     </div>
   </header>
 
-  <main class="flex-grow flex items-center justify-center p-6">
-    <div class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
-        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Menjahit</h3>
-        <p class="text-gray-500">Belajar menjahit dari dasar hingga mahir, cocok untuk pemula.</p>
+  <!-- Main Content -->
+  <main class="p-4 max-w-5xl mx-auto">
+    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
+      
+      <!-- Card 1 -->
+      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
+        <div class="text-emerald-600 text-2xl mb-2">🧵</div>
+        <h3 class="font-semibold text-lg">Menjahit</h3>
+        <p class="text-sm text-gray-500">Dasar hingga mahir.</p>
       </div>
-      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
-        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Coding</h3>
-        <p class="text-gray-500">Pelajari dasar pemrograman hingga web development.</p>
+
+      <!-- Card 2 -->
+      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
+        <div class="text-emerald-600 text-2xl mb-2">💻</div>
+        <h3 class="font-semibold text-lg">Coding</h3>
+        <p class="text-sm text-gray-500">Dasar pemrograman web.</p>
       </div>
-      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
-        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Bisnis</h3>
-        <p class="text-gray-500">Belajar cara memulai dan mengelola bisnis sukses dari nol.</p>
+
+      <!-- Card 3 -->
+      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
+        <div class="text-emerald-600 text-2xl mb-2">📈</div>
+        <h3 class="font-semibold text-lg">Bisnis</h3>
+        <p class="text-sm text-gray-500">Dari nol ke usaha nyata.</p>
       </div>
-      <div class="class-card bg-white p-8 rounded-3xl shadow-xl fade-in text-center border border-green-200">
-        <h3 class="text-2xl font-bold text-green-700 mb-3">Kelas Pertanian</h3>
-        <p class="text-gray-500">Pahami teknik bertani modern dan efisien untuk masa depan.</p>
+
+      <!-- Card 4 -->
+      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
+        <div class="text-emerald-600 text-2xl mb-2">🌱</div>
+        <h3 class="font-semibold text-lg">Pertanian</h3>
+        <p class="text-sm text-gray-500">Teknik modern & efisien.</p>
       </div>
+
+    </div>
+
+    <!-- CTA Button -->
+    <div class="text-center mt-8">
+      <a href="https://forms.gle/your-google-form-link"
+         class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-6 py-2 rounded-full transition">
+        Daftar Sekarang
+      </a>
     </div>
   </main>
 
-  <a href="https://forms.gle/your-google-form-link" class="cta-button bg-green-700 text-white py-3 px-6 rounded-full text-xl text-center mx-auto mb-6 max-w-xs block hover:bg-green-800 transition duration-200 ease-in-out">Daftar Sekarang</a>
-
-  <footer class="text-center text-green-700 text-sm py-5 bg-green-100 border-t border-green-200">
-    &copy; 2025 Kelas Keterampilan Masjid | Semua Hak Cipta Dilindungi
+  <!-- Footer -->
+  <footer class="text-center text-sm text-gray-500 py-4 border-t mt-10">
+    &copy; 2025 Kelas Keterampilan Masjid
   </footer>
 
 </body>
