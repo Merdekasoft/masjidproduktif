@@ -5,11 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Inspirasi Harian Islami</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    * {
-      text-decoration: none !important;
-    }
-
     .fade-in {
       animation: fadeIn 1.2s ease-in-out both;
     }
@@ -38,7 +35,6 @@
       background: rgba(255, 255, 255, 0.3);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
@@ -46,8 +42,8 @@
 
   <header class="glass text-white py-4 shadow-lg">
     <div class="text-center space-y-1">
-      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg">Inspirasi Harian Islami</h1>
-      <p class="text-xs italic text-white/90">Secercah cahaya untuk menyemangati hari</p>
+      <h1 class="text-3xl font-extrabold tracking-tight drop-shadow-lg text-teal-900">Inspirasi Harian Islami</h1>
+      <p class="text-xs italic text-teal-900">Secercah cahaya untuk menyemangati hari</p>
     </div>
   </header>
 
@@ -57,7 +53,7 @@
     </div>
   </main>
 
-  <footer class="glass text-center text-teal-900 text-sm py-5 border-t border-teal-300">
+  <footer class="glass text-center text-teal-900 text-sm py-5">
     &copy; 2025 Masjid Produktif • Hadis & Hikmah Harian
   </footer>
 
@@ -81,7 +77,6 @@
 
         container.innerHTML = `
           <h2 class="text-2xl font-bold text-sky-800 mb-3">${judul}</h2>
-          <div class="w-10 h-1 bg-teal-400 mx-auto mb-4 rounded-full"></div>
           <blockquote class="italic text-slate-700 text-lg leading-relaxed mb-4"><span class="typing">${isi}</span></blockquote>
           <p class="text-sm text-slate-500">📚 Sumber: ${sumber}</p>
         `;
