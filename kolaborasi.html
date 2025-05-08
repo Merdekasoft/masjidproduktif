@@ -5,58 +5,96 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Kolaborasi Sosial</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .glass {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: linear-gradient(135deg, #d1fae5 25%, #fef3c7 100%);
+      z-index: -1;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out both;
+    }
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in both;
+    }
+  </style>
 </head>
-<body class="bg-gray-900 text-white font-sans min-h-screen flex flex-col px-4 py-6">
+<body class="font-sans min-h-screen flex flex-col text-gray-800 text-sm animate-fade-in">
 
-  <main class="flex-grow max-w-3xl mx-auto">
-    <div class="text-center mb-8">
-      <h2 class="text-sm sm:text-base font-bold text-gray-200 mb-2">Gabung & Berkontribusi</h2>
-      <p class="text-xs sm:text-sm text-gray-400 leading-relaxed">
-        Kolaborasi dalam proyek sosial berdampak — pendidikan, kesehatan, hingga dakwah digital.
-      </p>
+  <header class="bg-white/30 text-emerald-900 py-4 shadow-md backdrop-blur-sm border-b border-white/30 animate-fade-in-up">
+    <div class="text-center space-y-1">
+      <h1 class="text-2xl font-bold drop-shadow animate-fade-in-up">
+        <i class="fas fa-hand-holding-heart mr-1"></i>Kolaborasi Sosial
+      </h1>
+      <p class="text-xs italic text-emerald-700 animate-fade-in">"Gabung dan berkontribusi dalam kebaikan sosial"</p>
     </div>
+  </header>
 
-    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
-      <div class="bg-gray-800 rounded-lg p-4 shadow hover:bg-gray-700 transition">
-        <h3 class="text-sm font-semibold mb-1">📚 Beasiswa Pendidikan</h3>
-        <p class="text-gray-300 text-xs">Akses pendidikan Islami bagi generasi muda.</p>
+  <main class="flex-grow flex items-center justify-center p-4 animate-fade-in">
+    <div class="glass max-w-3xl w-full p-6 rounded-xl shadow-lg animate-fade-in-up border border-white/20 space-y-6">
+      <div class="text-center">
+        <h2 class="text-base sm:text-lg font-semibold text-emerald-800 mb-1">Gabung & Berkontribusi</h2>
+        <p class="text-xs sm:text-sm text-gray-700">Kolaborasi dalam proyek sosial berdampak — pendidikan, kesehatan, hingga dakwah digital.</p>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-4 shadow hover:bg-gray-700 transition">
-        <h3 class="text-sm font-semibold mb-1">🏥 Bantuan Kesehatan</h3>
-        <p class="text-gray-300 text-xs">Bantu pengobatan dhuafa secara kolaboratif.</p>
+      <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+        <div class="bg-white/70 p-4 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-all animate-fade-in-up">
+          <h3 class="text-sm font-semibold text-emerald-800 mb-1">📚 Beasiswa Pendidikan</h3>
+          <p class="text-gray-700 text-xs">Akses pendidikan Islami bagi generasi muda.</p>
+        </div>
+
+        <div class="bg-white/70 p-4 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-all animate-fade-in-up">
+          <h3 class="text-sm font-semibold text-emerald-800 mb-1">🏥 Bantuan Kesehatan</h3>
+          <p class="text-gray-700 text-xs">Bantu pengobatan dhuafa secara kolaboratif.</p>
+        </div>
+
+        <div class="bg-white/70 p-4 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-all animate-fade-in-up">
+          <h3 class="text-sm font-semibold text-emerald-800 mb-1">📱 Dakwah Digital</h3>
+          <p class="text-gray-700 text-xs">Konten dan media Islam yang bermanfaat.</p>
+        </div>
+
+        <div class="bg-white/70 p-4 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-all animate-fade-in-up">
+          <h3 class="text-sm font-semibold text-emerald-800 mb-1">🥙 Program Pangan</h3>
+          <p class="text-gray-700 text-xs">Makanan sehat untuk keluarga prasejahtera.</p>
+        </div>
+
+        <div class="bg-white/70 p-4 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-all animate-fade-in-up">
+          <h3 class="text-sm font-semibold text-emerald-800 mb-1">🕌 Renovasi Masjid</h3>
+          <p class="text-gray-700 text-xs">Bangun fasilitas ibadah yang layak.</p>
+        </div>
+
+        <div class="bg-white/70 p-4 rounded-lg border border-emerald-100 shadow-sm hover:shadow-md transition-all animate-fade-in-up">
+          <h3 class="text-sm font-semibold text-emerald-800 mb-1">💼 Pemberdayaan UMKM</h3>
+          <p class="text-gray-700 text-xs">Pelatihan dan dukungan modal syariah.</p>
+        </div>
       </div>
 
-      <div class="bg-gray-800 rounded-lg p-4 shadow hover:bg-gray-700 transition">
-        <h3 class="text-sm font-semibold mb-1">📱 Dakwah Digital</h3>
-        <p class="text-gray-300 text-xs">Konten dan media Islam yang bermanfaat.</p>
+      <div class="text-center">
+        <a href="https://wa.me/" class="bg-emerald-600 text-white text-xs font-medium py-2 px-4 rounded-full shadow hover:opacity-85 transition">
+          <i class="fab fa-whatsapp mr-1"></i>Gabung Sekarang
+        </a>
       </div>
-
-      <div class="bg-gray-800 rounded-lg p-4 shadow hover:bg-gray-700 transition">
-        <h3 class="text-sm font-semibold mb-1">🥙 Program Pangan</h3>
-        <p class="text-gray-300 text-xs">Makanan sehat untuk keluarga prasejahtera.</p>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg p-4 shadow hover:bg-gray-700 transition">
-        <h3 class="text-sm font-semibold mb-1">🕌 Renovasi Masjid</h3>
-        <p class="text-gray-300 text-xs">Bangun fasilitas ibadah yang layak.</p>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg p-4 shadow hover:bg-gray-700 transition">
-        <h3 class="text-sm font-semibold mb-1">💼 Pemberdayaan UMKM</h3>
-        <p class="text-gray-300 text-xs">Pelatihan dan dukungan modal syariah.</p>
-      </div>
-    </div>
-
-    <div class="text-center mt-8">
-      <a href="https://wa.me/" class="bg-teal-600 text-white text-xs font-medium py-2 px-4 rounded-full shadow hover:opacity-85 transition">
-        Gabung Sekarang
-      </a>
     </div>
   </main>
 
-  <footer class="text-center text-gray-500 text-xs mt-8">
-    © 2025 Kolaborasi Sosial
+  <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm animate-fade-in">
+    &copy; 2025 Kolaborasi Sosial • Untuk Kebaikan Bersama
   </footer>
 </body>
 </html>
