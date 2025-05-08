@@ -7,54 +7,90 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     .fade-in {
-      animation: fadeIn 1s ease-in-out both;
+      animation: fadeIn 0.8s ease-in-out both;
     }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Pola Buku Tulis Bergaris (Garis Horizontal) */
+    .paper-texture {
+      background: repeating-linear-gradient(to bottom, #f0f0f0 0px, #f0f0f0 1px, #fff 1px, #fff 20px);
+    }
+
+    /* Kartu tanpa border kotak, hanya konten */
+    .card {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      color: #FFC107;
+    }
+
+    .card p {
+      color: #555;
+    }
+
+    /* Tombol CTA */
+    .cta-button {
+      background: linear-gradient(45deg, #FFEB3B, #FFC107);
+      color: white;
+    }
+
+    /* Font untuk tampilan buku tulis */
+    .book-font {
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .header {
+      background-color: #FFEB3B;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Courier New', Courier, monospace;
+      border-bottom: 3px solid #FFC107;
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
   <!-- Header -->
-  <header class="bg-emerald-600 text-white py-3 shadow-md">
-    <div class="text-center">
-      <h1 class="text-xl font-semibold tracking-tight">🌙 Kelas Keterampilan Masjid</h1>
-      <p class="text-sm text-emerald-100">Belajar keterampilan baru untuk masa depan yang lebih baik</p>
-    </div>
+  <header class="header">
+    <h1 class="text-4xl font-extrabold">Kelas Keterampilan Masjid</h1>
+    <p class="text-lg mt-2">Kembangkan keterampilan untuk masa depan yang lebih cerdas dan kreatif.</p>
   </header>
 
   <!-- Main Content -->
-  <main class="p-4 max-w-5xl mx-auto">
-    <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
-      
+  <main class="p-6 max-w-5xl mx-auto paper-texture">
+    <div class="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6">
+
       <!-- Card 1 -->
-      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-        <div class="text-emerald-600 text-2xl mb-2">🧵</div>
-        <h3 class="font-semibold text-lg">Menjahit</h3>
-        <p class="text-sm text-gray-500">Dasar hingga mahir.</p>
+      <div class="fade-in card">
+        <h3 class="text-xl font-semibold">🧵 Menjahit</h3>
+        <p class="text-sm">Dasar hingga mahir.</p>
       </div>
 
       <!-- Card 2 -->
-      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-        <div class="text-emerald-600 text-2xl mb-2">💻</div>
-        <h3 class="font-semibold text-lg">Coding</h3>
-        <p class="text-sm text-gray-500">Dasar pemrograman web.</p>
+      <div class="fade-in card">
+        <h3 class="text-xl font-semibold">💻 Coding</h3>
+        <p class="text-sm">Dasar pemrograman web.</p>
       </div>
 
       <!-- Card 3 -->
-      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-        <div class="text-emerald-600 text-2xl mb-2">📈</div>
-        <h3 class="font-semibold text-lg">Bisnis</h3>
-        <p class="text-sm text-gray-500">Dari nol ke usaha nyata.</p>
+      <div class="fade-in card">
+        <h3 class="text-xl font-semibold">📈 Bisnis</h3>
+        <p class="text-sm">Dari nol ke usaha nyata.</p>
       </div>
 
       <!-- Card 4 -->
-      <div class="fade-in bg-white p-4 rounded-xl shadow-sm border border-gray-200 text-center">
-        <div class="text-emerald-600 text-2xl mb-2">🌱</div>
-        <h3 class="font-semibold text-lg">Pertanian</h3>
-        <p class="text-sm text-gray-500">Teknik modern & efisien.</p>
+      <div class="fade-in card">
+        <h3 class="text-xl font-semibold">🌱 Pertanian</h3>
+        <p class="text-sm">Teknik bertani modern.</p>
       </div>
 
     </div>
@@ -62,14 +98,14 @@
     <!-- CTA Button -->
     <div class="text-center mt-8">
       <a href="https://forms.gle/your-google-form-link"
-         class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-medium px-6 py-2 rounded-full transition">
+         class="cta-button inline-block text-sm font-medium px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105">
         Daftar Sekarang
       </a>
     </div>
   </main>
 
   <!-- Footer -->
-  <footer class="text-center text-sm text-gray-500 py-4 border-t mt-10">
+  <footer class="text-center text-xs text-gray-500 py-5 border-t mt-10 bg-yellow-300">
     &copy; 2025 Kelas Keterampilan Masjid
   </footer>
 
