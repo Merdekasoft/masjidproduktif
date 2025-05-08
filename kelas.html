@@ -55,13 +55,47 @@
       font-family: 'Courier New', Courier, monospace;
       border-bottom: 3px solid #FFC107;
     }
+
+    /* Responsif untuk layar kecil */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem; /* Ukuran font header lebih kecil di layar kecil */
+      }
+
+      .header p {
+        font-size: 1rem;
+      }
+
+      .card {
+        padding: 1rem;
+      }
+
+      .cta-button {
+        width: 100%; /* Membuat tombol lebih lebar di perangkat kecil */
+        padding: 12px; /* Menambah ruang pada tombol */
+      }
+
+      /* Membuat grid menjadi satu kolom di perangkat kecil */
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card h3 {
+        font-size: 1.25rem; /* Ukuran teks lebih kecil pada kartu */
+      }
+
+      .card p {
+        font-size: 0.875rem;
+      }
+    }
+
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
   <!-- Header -->
   <header class="header">
-    <h1 class="text-4xl font-extrabold">Kelas Keterampilan Masjid</h1>
+    <h1 class="text-3xl font-extrabold">Kelas Keterampilan Masjid</h1>
     <p class="text-lg mt-2">Kembangkan keterampilan untuk masa depan yang lebih cerdas dan kreatif.</p>
   </header>
 
