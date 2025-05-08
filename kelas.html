@@ -70,17 +70,20 @@
       padding: 20px;
       text-align: center;
       font-family: 'Courier New', Courier, monospace;
-      border-bottom: 3px solid #FDD835;
+      border-top: 3px solid #FDD835;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+    }
+
+    main {
+      padding-bottom: 120px; /* ruang untuk header di bawah */
     }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
-
-  <!-- Header -->
-  <header class="header">
-    <h1 class="text-lg sm:text-xl md:text-2xl font-extrabold">Kelas Keterampilan Masjid</h1>
-    <p class="text-sm sm:text-base mt-2">Kembangkan keterampilan untuk masa depan yang lebih cerdas dan kreatif.</p>
-  </header>
 
   <!-- Main Content -->
   <main class="p-6 max-w-5xl mx-auto paper-texture">
@@ -121,10 +124,11 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="text-center text-xs text-gray-500 py-5 border-t mt-10 bg-yellow-200">
-    &copy; 2025 Kelas Keterampilan Masjid
-  </footer>
+  <!-- Header di Bawah -->
+  <header class="header">
+    <h1 class="text-sm sm:text-base md:text-lg font-extrabold">Kelas Keterampilan Masjid</h1>
+    <p class="text-xs sm:text-sm mt-1">Kembangkan keterampilan untuk masa depan yang lebih cerdas dan kreatif.</p>
+  </header>
 
 </body>
 </html>
