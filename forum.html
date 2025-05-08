@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Forum Jamaah Masjid</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-8XV75P7t5Ha1Rx4hJXpUpEBqZzFEaP6xNekMXThFb+M5MvHItj7H+z88+b1lj4qB9L/4mT64V6lAcbUymYxZ9A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     .fade-in {
       animation: fadeIn 0.5s ease-in-out both;
@@ -17,15 +18,18 @@
 </head>
 <body class="bg-[#eae6df] font-sans min-h-screen flex flex-col">
 
-  <header class="bg-green-700 text-white py-3 shadow-md sticky top-0 z-10">
-    <div class="px-4 flex items-center space-x-2">
-      <span class="text-xl">💬</span>
-      <h1 class="text-lg font-semibold">Forum Jamaah Masjid</h1>
+  <header class="bg-[#f0f0f0] text-black py-2 shadow-md sticky top-0 z-10">
+    <div class="px-4">
+      <h1 class="text-base font-semibold flex items-center gap-2">
+        <i class="fas fa-users"></i>
+        Forum Jamaah Masjid
+      </h1>
+      <p class="text-xs lowercase text-gray-600">grup diskusi dan informasi jamaah masjid</p>
     </div>
   </header>
 
   <main class="flex-grow px-4 py-6 overflow-y-auto max-w-md w-full mx-auto space-y-4">
-    <div id="diskusi-container" class="space-y-3 fade-in">
+    <div id="diskusi-container" class="space-y-3 fade-in flex flex-col">
       <p class="text-gray-500 text-sm italic text-center">Memuat diskusi terbaru...</p>
     </div>
   </main>
@@ -43,6 +47,19 @@
   <script>
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRhcv3m26WJ0vCK7nw2jYVYL3MQmexgpra81YyBnjmYd69U68WZLz8qJ3z7WqQEdfW1DRWrCNSbRacu/pub?output=tsv';
 
+    const warnaNama = [
+      'text-red-600', 'text-green-600', 'text-blue-600', 'text-yellow-600',
+      'text-purple-600', 'text-pink-600', 'text-orange-600', 'text-emerald-600'
+    ];
+
+    function getColorFromName(name) {
+      let total = 0;
+      for (let i = 0; i < name.length; i++) {
+        total += name.charCodeAt(i);
+      }
+      return warnaNama[total % warnaNama.length];
+    }
+
     fetch(sheetUrl)
       .then(response => response.text())
       .then(data => {
@@ -59,10 +76,12 @@
           container.innerHTML = '<p class="text-sm text-gray-500 italic text-center">Belum ada diskusi saat ini.</p>';
         }
 
-        discussions.forEach(d => {
+        discussions.forEach((d, index) => {
           const el = document.createElement('div');
-          el.className = 'max-w-xs bg-white p-3 rounded-2xl shadow-md text-sm text-gray-800';
-          el.innerHTML = `<p><strong class="text-green-700">${d.nama}:</strong><br/>${d.pesan}</p>`;
+          const isRight = index % 2 === 0;
+          const namaColor = getColorFromName(d.nama);
+          el.className = `max-w-[85%] p-3 rounded-2xl shadow-sm text-sm text-gray-800 ${isRight ? 'bg-green-100 self-end' : 'bg-white self-start'}`;
+          el.innerHTML = `<p><strong class="${namaColor}">${d.nama}</strong><br/>${d.pesan}</p>`;
           container.appendChild(el);
         });
       });
