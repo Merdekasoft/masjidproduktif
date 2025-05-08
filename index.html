@@ -8,6 +8,7 @@
   <style>
     * {
       box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent; /* Menghilangkan efek tap highlight di Android WebView */
     }
 
     body {
@@ -15,7 +16,9 @@
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #f0f4ff, #ffffff);
       padding: 1rem;
+      max-width: 100%;
       min-height: 100vh;
+      margin-inline: auto;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -25,19 +28,23 @@
       text-align: center;
       font-size: 2rem;
       margin-bottom: 1.5rem;
+      color: transparent;
       background: linear-gradient(45deg, #ff6f61, #ffcc00, #6b9ac4, #a1c4fd, #f69e7f);
-      background-size: 300% 300%;
       background-clip: text;
       -webkit-background-clip: text;
-      color: transparent;
       font-weight: bold;
-      animation: gradientMove 5s infinite linear;
+      animation: fadeInSlide 1s ease-out forwards;
     }
 
-    @keyframes gradientMove {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .container {
@@ -63,11 +70,11 @@
       text-align: center;
       padding: 0.5rem;
       cursor: pointer;
-      transition: all 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-decoration: none;
       font-size: 1rem;
-      animation: fadeInScale 0.8s ease forwards;
+      animation: bubblePop 0.8s ease forwards;
       opacity: 0;
     }
 
@@ -80,25 +87,25 @@
       margin-bottom: 0.4rem;
     }
 
-    .agenda { background: linear-gradient(135deg, #84fab0, #8fd3f4); animation-delay: 0s; }
-    .forum { background: linear-gradient(135deg, #f6d365, #fda085); animation-delay: 0.1s; }
-    .keahlian { background: linear-gradient(135deg, #a18cd1, #fbc2eb); animation-delay: 0.2s; }
-    .lapak { background: linear-gradient(135deg, #ffecd2, #fcb69f); animation-delay: 0.3s; }
-    .kelas { background: linear-gradient(135deg, #c2e9fb, #a1c4fd); animation-delay: 0.4s; }
-    .inspirasi { background: linear-gradient(135deg, #fccb90, #d57eeb); animation-delay: 0.5s; }
-    .donasi { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); animation-delay: 0.6s; }
-    .kolaborasi { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); animation-delay: 0.7s; }
-
-    @keyframes fadeInScale {
+    @keyframes bubblePop {
       0% {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(0.7);
       }
       100% {
         opacity: 1;
         transform: scale(1);
       }
     }
+
+    .agenda { background: linear-gradient(135deg, #00c9a7, #0061ff); animation-delay: 0s; }
+    .forum { background: linear-gradient(135deg, #ff6a00, #ee0979); animation-delay: 0.1s; }
+    .keahlian { background: linear-gradient(135deg, #8e2de2, #4a00e0); animation-delay: 0.2s; }
+    .lapak { background: linear-gradient(135deg, #ff4e50, #f9d423); animation-delay: 0.3s; }
+    .kelas { background: linear-gradient(135deg, #1d976c, #93f9b9); animation-delay: 0.4s; }
+    .inspirasi { background: linear-gradient(135deg, #f7971e, #ffd200); animation-delay: 0.5s; }
+    .donasi { background: linear-gradient(135deg, #f953c6, #b91d73); animation-delay: 0.6s; }
+    .kolaborasi { background: linear-gradient(135deg, #00b09b, #96c93d); animation-delay: 0.7s; }
 
     @media (max-width: 400px) {
       .bubble {
