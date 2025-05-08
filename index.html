@@ -13,11 +13,9 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #ffffff);
+      background: linear-gradient(135deg, #f0f4ff, #ffffff);
       padding: 1rem;
-      max-width: 100%;
       min-height: 100vh;
-      margin-inline: auto;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -27,11 +25,19 @@
       text-align: center;
       font-size: 2rem;
       margin-bottom: 1.5rem;
-      color: transparent;
-      background: linear-gradient(45deg, #2196f3, #ff9800, #4caf50);
+      background: linear-gradient(45deg, #ff6f61, #ffcc00, #6b9ac4, #a1c4fd, #f69e7f);
+      background-size: 300% 300%;
       background-clip: text;
       -webkit-background-clip: text;
+      color: transparent;
       font-weight: bold;
+      animation: gradientMove 5s infinite linear;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -58,11 +64,11 @@
       padding: 0.5rem;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-decoration: none;
       font-size: 1rem;
-      -webkit-tap-highlight-color: transparent;
-      outline: none;
+      animation: fadeInScale 0.8s ease forwards;
+      opacity: 0;
     }
 
     .bubble:hover {
@@ -74,14 +80,25 @@
       margin-bottom: 0.4rem;
     }
 
-    .agenda     { background: linear-gradient(135deg, #1565c0, #64b5f6); }
-    .forum      { background: linear-gradient(135deg, #ef6c00, #ffb74d); }
-    .keahlian   { background: linear-gradient(135deg, #6a1b9a, #ba68c8); }
-    .lapak      { background: linear-gradient(135deg, #2e7d32, #81c784); }
-    .kelas      { background: linear-gradient(135deg, #c62828, #e57373); }
-    .inspirasi  { background: linear-gradient(135deg, #fdd835, #fbc02d); color: #333; }
-    .donasi     { background: linear-gradient(135deg, #00838f, #4dd0e1); }
-    .kolaborasi { background: linear-gradient(135deg, #3f51b5, #9fa8da); }
+    .agenda { background: linear-gradient(135deg, #84fab0, #8fd3f4); animation-delay: 0s; }
+    .forum { background: linear-gradient(135deg, #f6d365, #fda085); animation-delay: 0.1s; }
+    .keahlian { background: linear-gradient(135deg, #a18cd1, #fbc2eb); animation-delay: 0.2s; }
+    .lapak { background: linear-gradient(135deg, #ffecd2, #fcb69f); animation-delay: 0.3s; }
+    .kelas { background: linear-gradient(135deg, #c2e9fb, #a1c4fd); animation-delay: 0.4s; }
+    .inspirasi { background: linear-gradient(135deg, #fccb90, #d57eeb); animation-delay: 0.5s; }
+    .donasi { background: linear-gradient(135deg, #e0c3fc, #8ec5fc); animation-delay: 0.6s; }
+    .kolaborasi { background: linear-gradient(135deg, #fbc2eb, #a6c1ee); animation-delay: 0.7s; }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
     @media (max-width: 400px) {
       .bubble {
