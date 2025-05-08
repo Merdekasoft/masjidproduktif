@@ -23,71 +23,86 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
     .animate-fade-in-up {
       animation: fadeInUp 0.6s ease-out both;
     }
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in both;
+    }
   </style>
 </head>
-<body class="font-sans min-h-screen flex flex-col text-gray-800 text-sm">
+<body class="font-sans min-h-screen flex flex-col text-gray-800 text-sm animate-fade-in">
 
-  <header class="bg-white/30 text-emerald-900 py-4 shadow-md backdrop-blur-sm border-b border-white/30">
+  <header class="bg-white/30 text-emerald-900 py-4 shadow-md backdrop-blur-sm border-b border-white/30 animate-fade-in-up">
     <div class="text-center space-y-1">
       <h1 class="text-2xl font-bold drop-shadow animate-fade-in-up">
         <i class="fas fa-calendar-week mr-1"></i>Agenda Kegiatan Masjid
       </h1>
-      <p class="text-xs italic text-emerald-700">"Catatan kegiatan untuk menyemangati amal"</p>
+      <p class="text-xs italic text-emerald-700 animate-fade-in">"Catatan kegiatan untuk menyemangati amal"</p>
     </div>
   </header>
 
-  <main class="flex-grow flex items-center justify-center p-4">
+  <main class="flex-grow flex items-center justify-center p-4 animate-fade-in">
     <div class="glass max-w-2xl w-full p-4 rounded-xl shadow-lg animate-fade-in-up border border-white/20 space-y-4" id="agenda-container">
-      <p class="text-gray-600 text-center"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat agenda kegiatan...</p>
+      <p class="text-gray-600 text-center animate-fade-in" id="loading-message">
+        <i class="fas fa-spinner fa-spin mr-2"></i>Memuat agenda kegiatan...
+      </p>
     </div>
   </main>
 
-  <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm">
+  <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm animate-fade-in">
     &copy; 2025 <i class="fas fa-mosque"></i> Masjid Produktif • Jadwal & Kegiatan Harian
   </footer>
 
   <script>
     const tsvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTuDb3C_2GcjKKJot8hR6gFRfdLPIPqjJy6Dxsu1Efs8BhmBpTrBTGlTjfzaSYCQ9Vqx2N1UTlaQfqX/pub?output=tsv";
 
-    fetch(tsvUrl)
-      .then(response => response.text())
-      .then(data => {
-        const lines = data.trim().split('\n');
-        const rows = lines.slice(1);
-        const container = document.getElementById('agenda-container');
-        container.innerHTML = '';
+    setTimeout(() => {
+      fetch(tsvUrl)
+        .then(response => response.text())
+        .then(data => {
+          const lines = data.trim().split('\n');
+          const rows = lines.slice(1);
+          const container = document.getElementById('agenda-container');
+          const loading = document.getElementById('loading-message');
 
-        if (rows.length === 0) {
-          container.innerHTML = '<p class="text-gray-500 text-center">Belum ada agenda tersedia.</p>';
-          return;
-        }
+          if (loading) loading.remove();
 
-        rows.forEach(row => {
-          const [judul, pemateri, tanggal, jam, deskripsi] = row.split('\t');
+          if (rows.length === 0) {
+            container.innerHTML = '<p class="text-gray-500 text-center animate-fade-in">Belum ada agenda tersedia.</p>';
+            return;
+          }
 
-          const card = document.createElement('div');
-          card.className = "bg-white/80 backdrop-blur border border-emerald-200 p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 animate-fade-in-up";
+          rows.forEach((row, index) => {
+            const [pemateri, judul, tanggal, jam, deskripsi] = row.split('\t');
 
-          card.innerHTML = `
-            <h2 class="text-center text-lg font-semibold text-emerald-800 mb-1">
-              <i class="fas fa-bullhorn mr-1 text-emerald-600"></i>${judul}
-            </h2>
-            <div class="text-xs text-gray-600 mb-2 text-center">
-              ${pemateri ? `<strong>${pemateri}</strong> &bull; ` : ''}${tanggal} &bull; ${jam} WIB
-            </div>
-            <p class="text-gray-700 leading-relaxed text-xs text-center">${deskripsi}</p>
-          `;
+            setTimeout(() => {
+              const card = document.createElement('div');
+              card.className = `bg-white/80 backdrop-blur border border-emerald-200 p-4 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 animate-fade-in-up`;
 
-          container.appendChild(card);
+              card.innerHTML = `
+                <h2 class="text-center text-lg font-semibold text-emerald-800 mb-1 animate-fade-in">
+                  <i class="fas fa-bullhorn mr-1 text-emerald-600"></i>${judul}
+                </h2>
+                <div class="text-xs text-gray-600 mb-2 text-center animate-fade-in">
+                  ${pemateri ? `<strong>${pemateri}</strong> &bull; ` : ''}${tanggal} &bull; ${jam} WIB
+                </div>
+                <p class="text-gray-700 leading-relaxed text-xs text-center animate-fade-in">${deskripsi}</p>
+              `;
+
+              container.appendChild(card);
+            }, index * 500);
+          });
+        })
+        .catch(err => {
+          document.getElementById('agenda-container').innerHTML = `<p class="text-red-500 text-center animate-fade-in">Gagal memuat data agenda.</p>`;
+          console.error("TSV Load Error:", err);
         });
-      })
-      .catch(err => {
-        document.getElementById('agenda-container').innerHTML = `<p class="text-red-500 text-center">Gagal memuat data agenda.</p>`;
-        console.error("TSV Load Error:", err);
-      });
+    }, 1000);
   </script>
 </body>
 </html>
