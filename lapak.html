@@ -190,7 +190,6 @@ function displayProducts() {
         <div class="product-title">${title}</div>
         <div class="product-price">${price ? 'Rp ' + price.toLocaleString('id-ID') : 'Harga tidak tersedia'}</div>
         <button class="beli-button" onclick="openProductLink('${link || '#'}')">Beli Langsung</button>
-
       </div>
     `;
     productContainer.appendChild(card);
@@ -230,6 +229,16 @@ searchInput.addEventListener('input', () => {
 loadMoreButton.addEventListener('click', () => {
   displayProducts();
 });
+
+function openProductLink(url) {
+  if (!url || url === '#') return;
+  // Untuk WebView (Android/iOS) membuka di browser eksternal
+  if (window.cordova) {
+    window.open(url, '_system'); // Membuka di browser sistem (eksternal)
+  } else {
+    window.open(url, '_blank'); // Membuka di tab baru (browser biasa)
+  }
+}
 
 loadProducts();
 </script>
