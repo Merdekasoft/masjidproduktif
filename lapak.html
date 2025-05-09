@@ -189,7 +189,8 @@ function displayProducts() {
       <div class="product-card-content">
         <div class="product-title">${title}</div>
         <div class="product-price">${price ? 'Rp ' + price.toLocaleString('id-ID') : 'Harga tidak tersedia'}</div>
-        <a href="${link || '#'}" target="_blank" class="beli-button">Beli Langsung</a>
+        <button class="beli-button" onclick="openProductLink('${link || '#'}')">Beli Langsung</button>
+
       </div>
     `;
     productContainer.appendChild(card);
