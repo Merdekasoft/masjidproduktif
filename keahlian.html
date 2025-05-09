@@ -7,136 +7,73 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
-    .glass {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: linear-gradient(135deg, #d1fae5 25%, #fef3c7 100%);
-      z-index: -1;
-    }
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .animate-fade-in-up {
-      animation: fadeInUp 0.6s ease-out both;
-    }
-    .animate-fade-in {
-      animation: fadeIn 1s ease-in both;
-    }
+    .glass {background: rgba(255,255,255,0.25);backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px);}
+    body::before {content:'';position:fixed;top:0;left:0;right:0;bottom:0;background-image:linear-gradient(135deg,#d1fae5 25%,#fef3c7 100%);z-index:-1;}
+    @keyframes fadeInUp {from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes fadeIn {from{opacity:0;}to{opacity:1;}}
+    .animate-fade-in-up {animation:fadeInUp 0.6s ease-out both;}
+    .animate-fade-in {animation:fadeIn 1s ease-in both;}
   </style>
 </head>
 <body class="font-sans min-h-screen flex flex-col text-gray-800 text-sm animate-fade-in">
-
   <header class="bg-white/30 text-emerald-900 py-4 shadow-md backdrop-blur-sm border-b border-white/30 animate-fade-in-up">
     <div class="text-center space-y-1">
-      <h1 class="text-2xl font-bold drop-shadow animate-fade-in-up">
-        <i class="fas fa-hands-helping mr-2"></i>Keahlian Jamaah Masjid
-      </h1>
+      <h1 class="text-2xl font-bold drop-shadow animate-fade-in-up"><i class="fas fa-hands-helping mr-2"></i>Keahlian Jamaah Masjid</h1>
       <p class="text-xs italic text-emerald-700 animate-fade-in">"Kolaborasi dan kontribusi untuk umat"</p>
     </div>
   </header>
-
   <main class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 animate-fade-in">
-
     <div class="glass max-w-2xl w-full p-6 rounded-xl shadow-lg border border-white/20 space-y-4 animate-fade-in-up">
-      <h2 class="text-xl font-semibold text-center text-emerald-800">🔍 Cari Keahlian</h2>
-      <input type="text" id="cari" placeholder="Cari keahlian atau nama..."
-             class="w-full p-3 border border-emerald-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 bg-white/60">
+      <div class="relative">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 text-emerald-600"><i class="fas fa-search"></i></span>
+        <input type="text" id="cari" placeholder="🔍 Cari Keahlian" class="pl-9 pr-3 py-2 border border-emerald-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 bg-white/60 w-full" />
+      </div>
     </div>
-
     <div class="glass max-w-2xl w-full p-6 rounded-xl shadow-lg border border-white/20 space-y-4 animate-fade-in-up" id="keahlian-container">
-      <p class="text-gray-600 text-center animate-fade-in">
-        <i class="fas fa-spinner fa-spin mr-2"></i>Memuat data keahlian...
-      </p>
+      <p class="text-gray-600 text-center animate-fade-in"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data keahlian...</p>
     </div>
-
     <div class="glass max-w-2xl w-full p-6 rounded-xl shadow-lg border border-white/20 text-center animate-fade-in-up">
       <h2 class="text-xl font-semibold text-emerald-800 mb-2">➕ Ingin Menawarkan Keahlian?</h2>
       <p class="text-gray-700 text-sm mb-4">Isi formulir berikut untuk bergabung sebagai kontributor.</p>
-      <a href="https://forms.gle/LHLH7Hb2eXq2d5kY8" target="_blank"
-         class="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-2 rounded-full shadow hover:bg-emerald-700 transition">
-        <i class="fas fa-plus-circle"></i> Daftar Keahlian
-      </a>
+      <a href="https://forms.gle/LHLH7Hb2eXq2d5kY8" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-2 rounded-full shadow hover:bg-emerald-700 transition"><i class="fas fa-plus-circle"></i> Daftar Keahlian</a>
     </div>
-
   </main>
-
   <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm animate-fade-in">
     &copy; 2025 <i class="fas fa-mosque"></i> Masjid Produktif • Kolaborasi Jamaah
   </footer>
-
   <script>
-    const container = document.getElementById('keahlian-container');
-    const inputCari = document.getElementById('cari');
-    let semuaData = [];
-
+    const container = document.getElementById('keahlian-container'), inputCari = document.getElementById('cari'); let semuaData = [];
     async function fetchKeahlian() {
       const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTBaqJPDBGxF5JDROoL7BMRQe6tUcB17uWfO4ZVzCFLOgBU9GjEoHxvVxj-kHdAeJ8aiJQ_ZbAz8U4u/pub?output=tsv';
       container.innerHTML = '';
-
       try {
-        const res = await fetch(url);
-        const tsv = await res.text();
-        const rows = tsv.trim().split('\n');
-        const data = rows.slice(1).map(row => row.split('\t'));
-
-        semuaData = data.map(([nama, keahlian, whatsapp]) => ({
-          nama,
-          keahlian,
-          whatsapp: formatWa(whatsapp)
-        }));
-
+        const res = await fetch(url), tsv = await res.text(), rows = tsv.trim().split('\n');
+        semuaData = rows.slice(1).map(r => {
+          const [nama, keahlian, whatsapp] = r.split('\t');
+          return {nama, keahlian, whatsapp: formatWa(whatsapp)};
+        });
         tampilkanData(semuaData);
-      } catch (err) {
+      } catch {
         container.innerHTML = '<p class="text-red-500 text-center">Gagal memuat data. Silakan coba lagi nanti.</p>';
       }
     }
-
-    function formatWa(nomor) {
-      const no = nomor.replace(/\D/g, '');
+    function formatWa(n) {
+      const no = n.replace(/\D/g, '');
       return no.startsWith('8') ? '62' + no : no;
     }
-
     function tampilkanData(data) {
-      container.innerHTML = '';
-
-      if (data.length === 0) {
-        container.innerHTML = '<p class="text-gray-500 text-center">Tidak ditemukan data sesuai pencarian.</p>';
-        return;
-      }
-
-      data.forEach(({ nama, keahlian, whatsapp }) => {
+      container.innerHTML = data.length === 0 ? '<p class="text-gray-500 text-center">Tidak ditemukan data sesuai pencarian.</p>' : '';
+      data.forEach(({nama, keahlian, whatsapp}) => {
         const div = document.createElement('div');
         div.className = 'bg-white/60 p-4 rounded-xl border border-white/30 text-center shadow';
-        div.innerHTML = `
-          <p class="text-base font-semibold text-emerald-800">${nama}</p>
-          <p class="text-sm text-gray-700 mb-3">${keahlian}</p>
-          <a href="https://wa.me/${whatsapp}" target="_blank"
-            class="inline-block bg-emerald-500 text-white px-4 py-1 rounded-full text-xs hover:bg-emerald-600 transition">
-            💬 Hubungi via WhatsApp
-          </a>`;
+        div.innerHTML = `<p class="text-base font-semibold text-emerald-800">${nama}</p><p class="text-sm text-gray-700 mb-3">${keahlian}</p><a href="https://wa.me/${whatsapp}" target="_blank" class="inline-block bg-emerald-500 text-white px-4 py-1 rounded-full text-xs hover:bg-emerald-600 transition">💬 Hubungi via WhatsApp</a>`;
         container.appendChild(div);
       });
     }
-
     inputCari.addEventListener('input', () => {
       const keyword = inputCari.value.toLowerCase();
-      const hasilFilter = semuaData.filter(d =>
-        d.nama.toLowerCase().includes(keyword) || d.keahlian.toLowerCase().includes(keyword)
-      );
-      tampilkanData(hasilFilter);
+      tampilkanData(semuaData.filter(d => d.nama.toLowerCase().includes(keyword) || d.keahlian.toLowerCase().includes(keyword)));
     });
-
     fetchKeahlian();
   </script>
 </body>
