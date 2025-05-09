@@ -6,9 +6,7 @@
   <title>Lapak Produktif</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -60,6 +58,8 @@
       flex-direction: column;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       position: relative;
+      text-decoration: none;
+      color: inherit;
     }
 
     .product-card:hover {
@@ -97,23 +97,6 @@
       font-size: 18px;
       color: #28a745;
       font-weight: 700;
-      margin-bottom: 16px;
-    }
-
-    .beli-button {
-      margin-top: auto;
-      padding: 12px;
-      background-color: #0d6efd;
-      color: white;
-      text-align: center;
-      border-radius: 30px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-
-    .beli-button:hover {
-      background-color: #0b5ed7;
     }
 
     .product-label {
@@ -137,7 +120,7 @@
     }
 
     #load-more {
-      display: block;
+      display: none;
       margin: 20px auto 40px auto;
       padding: 12px 28px;
       background: #20c997;
@@ -165,7 +148,7 @@
 <div id="error" style="display:none;">Terjadi kesalahan saat memuat data.</div>
 <div id="no-results" style="display:none;">Produk tidak ditemukan.</div>
 <div class="product-grid" id="product-container"></div>
-<button id="load-more" style="display:none;">Muat Lebih Banyak</button>
+<button id="load-more">Tampilkan Lagi</button>
 
 <script>
 const tsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRz9ttPOi2MczayQndhMHZA_K-MCA2_YjjkcEQ_bluqbbCfpSfnpLHUK1RMNuoYnjq86GLvBkN3tiKK/pub?output=tsv';
@@ -210,22 +193,24 @@ function displayProducts() {
     const [title, imageUrl, priceText, link] = product;
     const price = parseInt(priceText.replace(/[^\d]/g, '')) || 0;
     const label = getLabel(title);
-    const card = document.createElement('div');
+    const card = document.createElement('a');
     card.className = 'product-card';
+    card.href = link || '#';
+    card.target = '_blank';
     card.innerHTML = `
       ${label ? `<div class="product-label">${label}</div>` : ''}
       <img src="${imageUrl || 'https://via.placeholder.com/300x200'}" class="product-image" alt="${title}">
       <div class="product-card-content">
         <div class="product-title">${title}</div>
         <div class="product-price">${price ? 'Rp ' + price.toLocaleString('id-ID') : 'Harga tidak tersedia'}</div>
-        <a href="${link || '#'}" target="_blank" class="beli-button">Beli Langsung</a>
       </div>
     `;
     productContainer.appendChild(card);
   });
 
   currentPage++;
-  loadMoreButton.style.display = currentPage * productsPerPage < displayedProducts.length ? 'block' : 'none';
+  const hasMore = currentPage * productsPerPage < displayedProducts.length;
+  loadMoreButton.style.display = hasMore ? 'block' : 'none';
   noResultsElement.style.display = displayedProducts.length === 0 ? 'block' : 'none';
 }
 
