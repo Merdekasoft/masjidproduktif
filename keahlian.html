@@ -22,13 +22,18 @@
       <p class="text-xs italic text-emerald-700 animate-fade-in">"Kolaborasi dan kontribusi untuk umat"</p>
     </div>
   </header>
-  <main class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 animate-fade-in">
-    <div class="glass max-w-2xl w-full p-6 rounded-xl shadow-lg border border-white/20 space-y-4 animate-fade-in-up">
+
+  <!-- Search box always on top -->
+  <div class="sticky top-0 z-10 w-full flex justify-center bg-gradient-to-b from-white/50 to-transparent backdrop-blur-sm py-3 px-4">
+    <div class="glass w-full max-w-2xl px-4 py-2 rounded-full shadow border border-white/20">
       <div class="relative">
         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-emerald-600"><i class="fas fa-search"></i></span>
-        <input type="text" id="cari" placeholder="🔍 Cari Keahlian" class="pl-9 pr-3 py-2 border border-emerald-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-emerald-400 bg-white/60 w-full" />
+        <input type="text" id="cari" placeholder="🔍 Cari Keahlian" class="pl-9 pr-3 py-2 w-full rounded-full text-sm border-none bg-transparent focus:outline-none" />
       </div>
     </div>
+  </div>
+
+  <main class="flex-grow flex flex-col items-center justify-center p-6 space-y-6 animate-fade-in">
     <div class="glass max-w-2xl w-full p-6 rounded-xl shadow-lg border border-white/20 space-y-4 animate-fade-in-up" id="keahlian-container">
       <p class="text-gray-600 text-center animate-fade-in"><i class="fas fa-spinner fa-spin mr-2"></i>Memuat data keahlian...</p>
     </div>
@@ -38,9 +43,11 @@
       <a href="https://forms.gle/LHLH7Hb2eXq2d5kY8" target="_blank" class="inline-flex items-center gap-2 bg-emerald-600 text-white px-6 py-2 rounded-full shadow hover:bg-emerald-700 transition"><i class="fas fa-plus-circle"></i> Daftar Keahlian</a>
     </div>
   </main>
+
   <footer class="text-center text-emerald-900 text-xs py-3 bg-white/30 border-t border-white/30 backdrop-blur-sm animate-fade-in">
     &copy; 2025 <i class="fas fa-mosque"></i> Masjid Produktif • Kolaborasi Jamaah
   </footer>
+
   <script>
     const container = document.getElementById('keahlian-container'), inputCari = document.getElementById('cari'); let semuaData = [];
     async function fetchKeahlian() {
